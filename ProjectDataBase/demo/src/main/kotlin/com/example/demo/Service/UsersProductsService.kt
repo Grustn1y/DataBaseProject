@@ -24,13 +24,13 @@ class UsersProductsService (private val usersProductRepository: UsersProductRepo
 
     fun add(product: UsersProduct):UsersProduct
     {
-       val New:UsersProduct= UsersProduct(firstName = product.firstName, lastName = product.firstName, email = product.email, password = product.password, thirdName = product.thirdName, address = product.address, phoneNumber =product.phoneNumber, inn = product.inn, organisationName = product.organisationName, usersRoles =product.usersRoles)
+       val new:UsersProduct= UsersProduct(firstName = product.firstName, lastName = product.firstName, email = product.email, password = product.password, thirdName = product.thirdName, address = product.address, phoneNumber =product.phoneNumber, inn = product.inn, organisationName = product.organisationName, usersRoles =product.usersRoles)
 
-       return usersProductRepository.save(New)
+       return usersProductRepository.save(new)
     }
     fun edit(id: Long,product: UsersProduct):UsersProduct=usersProductRepository.save(product.copy(id=id))
 
-    fun Remove(id:UsersProduct)
+    fun remove(id:UsersProduct)
     {
         usersProductRepository.delete(id)
     }

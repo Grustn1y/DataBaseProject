@@ -33,6 +33,6 @@ class UsersProductController(private val productsService: UsersProductsService)
     @DeleteMapping("{id}")
     fun delete(@PathVariable id:UsersProduct)
     {
-        productsService.Remove(id)
+        productsService.remove(id)
     }
 }
