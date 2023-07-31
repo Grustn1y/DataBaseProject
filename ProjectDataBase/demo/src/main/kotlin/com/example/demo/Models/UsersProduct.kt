@@ -2,7 +2,9 @@ package com.example.demo.Models
 
 import javax.persistence.*
 import com.fasterxml.jackson.annotation.*
+import org.hibernate.annotations.CascadeType
 import org.jetbrains.annotations.NotNull
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User
 import org.springframework.data.annotation.Id
 
 
@@ -62,5 +64,5 @@ data class UsersProduct(
     @NotNull
     @Column(name = "organisationName", length = 30)
     val organisationName:String=""
-    )
+        )
 

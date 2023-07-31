@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("Status")
 class StatusProductController(private val productService: StatusProductService)
 {
-@GetMapping("GetAll")
-fun getAll():List<StatusProduct>
-{
+    @GetMapping("GetAll")
+    fun getAll():List<StatusProduct>
+    {
     return productService.all()
-}
+    }
 
     @PostMapping
     fun create(@RequestBody product: StatusProduct)
@@ -24,10 +24,16 @@ fun getAll():List<StatusProduct>
         productService.add(product)
     }
 
-    @GetMapping("{id}")
-    @ResponseStatus(HttpStatus.FOUND)
-    fun read(@PathVariable id:Long,@RequestBody product:StatusProduct)
+  @GetMapping("{id}")
+  @ResponseStatus(HttpStatus.FOUND)
+  fun read(@PathVariable id:Long,@RequestBody product: StatusProduct)
+  {
+   productService.edit(id,product)
+  }
+
+    @DeleteMapping("{id}")
+    fun delete(@PathVariable id:StatusProduct)
     {
-        productService.
+        productService.remove(id)
     }
 }

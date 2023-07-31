@@ -30,6 +30,8 @@ class StatusProductService (private val statusProductRepository: StatusProductRe
         return statusProductRepository.save(new)
     }
 
+fun edit(id:Long,product: StatusProduct):StatusProduct=statusProductRepository.save(product.copy(id=id))
+
     fun remove(id:StatusProduct)
     {
         statusProductRepository.delete(id)

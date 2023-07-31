@@ -16,6 +16,7 @@ data class StatusProduct(
      @Column(name = "id")
      @GeneratedValue(strategy=GenerationType.AUTO)
      val id:Long=0L,
+
         @JsonProperty("Status_Appeal")
         @Column(name = "statusAppeal")
         @NotNull
