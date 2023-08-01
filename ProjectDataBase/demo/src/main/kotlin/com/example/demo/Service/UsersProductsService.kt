@@ -24,7 +24,7 @@ class UsersProductsService (private val usersProductRepository: UsersProductRepo
 
     fun add(product: UsersProduct):UsersProduct
     {
-       val new:UsersProduct= UsersProduct(firstName = product.firstName, lastName = product.firstName, email = product.email, password = product.password, thirdName = product.thirdName, address = product.address, phoneNumber =product.phoneNumber, inn = product.inn, organisationName = product.organisationName, usersRoles =product.usersRoles)
+       val new:UsersProduct= UsersProduct(firstName = product.firstName, lastName = product.firstName, email = product.email, password = product.password, thirdName = product.thirdName, address = product.address, phoneNumber =product.phoneNumber, inn = product.inn, organisationName = product.organisationName, usersRoles = product.usersRoles)
 
        return usersProductRepository.save(new)
     }

@@ -3,7 +3,6 @@ package com.example.demo.Controllers
 import com.example.demo.Service.*
 import com.example.demo.Models.UsersProduct
 import lombok.RequiredArgsConstructor
-import org.springframework.data.annotation.Id
 import  org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
