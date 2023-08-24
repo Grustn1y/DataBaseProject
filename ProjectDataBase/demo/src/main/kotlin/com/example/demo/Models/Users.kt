@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id
 @Entity
 @Table(name = "Users")
 data class Users(
+
     @javax.persistence.Id @Id
     @NotNull
     @JsonProperty("id")

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("Status")
 class StatusController(private val productService: StatusService)
 {
-    @GetMapping("GetAll")
+    @GetMapping("get_all")
     fun getAll():List<Status>
     {
     return productService.all()
@@ -24,10 +24,10 @@ class StatusController(private val productService: StatusService)
     }
 
   @GetMapping("{id}")
-  @ResponseStatus(HttpStatus.FOUND)
-  fun read(@PathVariable id:Long,@RequestBody product: Status)
+  @ResponseStatus(HttpStatus.OK)
+  fun get(@PathVariable id:Long):Status
   {
-   productService.edit(id,product)
+   return productService.get(id)
   }
 
     @DeleteMapping("{id}")

@@ -10,34 +10,32 @@ import org.springframework.data.annotation.Id
 
 data class Message(
 
-@javax.persistence.Id @Id
-@JsonProperty("id")
-@Column(name = "id")
-@GeneratedValue(strategy = GenerationType.AUTO)
-val id:Long=0L,
+    @javax.persistence.Id @Id
+    @JsonProperty("id")
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    val id:Long=0L,
 
-@JsonProperty("appealId")
-@OneToOne
-@JoinColumn(name = "appealId", referencedColumnName = "id")
-val appealId:Appeal,
+    @JsonProperty("appealId")
+    @Column(name = "appealId")
+    val appealId:Long,
 
-@JsonProperty("ownerId")
-@OneToOne
-@JoinColumn(name = "ownerId", referencedColumnName = "id")
-val ownerId:Users,
+    @JsonProperty("ownerId")
+    @Column(name = "ownerId")
+    val ownerId:Long,
 
-@JsonProperty("Header")
-@NotNull
-@Column(name = "header")
-val header:String="",
+    @JsonProperty("appealHeader")
+    @NotNull
+    @Column(name = "appealHeader", length = 155)
+    val appealHeader:String="",
 
-@JsonProperty("Content")
-@NotNull
-@Column(name = "content", length = 255)
-val content:String="",
+    @JsonProperty("Content")
+    @NotNull
+    @Column(name = "content")
+    val content:String="",
 
-@JsonProperty("dateOfCreate")
-@NotNull
-@Column(name="dateOfCreate")
-val dateOfCreate:java.sql.Timestamp
+    @JsonProperty("dateOfCreate")
+    @NotNull
+    @Column(name="dateOfCreate")
+    val dateOfCreate:java.sql.Timestamp
 )

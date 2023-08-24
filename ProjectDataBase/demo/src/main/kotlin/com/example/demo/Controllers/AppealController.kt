@@ -3,7 +3,8 @@ package com.example.demo.Controllers
 import com.example.demo.Service.*
 import com.example.demo.Models.Appeal
 import lombok.RequiredArgsConstructor
-import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Page
+
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -12,22 +13,23 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("Appeal")
  class AppealController(private val productService:AppealService)
 {
-    @GetMapping("GetAll")
+    @GetMapping("get_all")
     fun all():List<Appeal>
     {
         return productService.all()
     }
+
     @PostMapping
-    fun craate(@RequestBody product: Appeal)
+    fun create(@RequestBody product: Appeal)
     {
         productService.add(product)
     }
-    @GetMapping("{id}")
-    @ResponseStatus(HttpStatus.FOUND)
 
-    fun  read(@PathVariable id: Long, @RequestBody product:Appeal)
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun  get(@PathVariable id: Long):Appeal
     {
-        productService.edit(id,product)
+        return productService.get(id)
     }
 
     @DeleteMapping("{id}")
@@ -37,8 +39,8 @@ import org.springframework.web.bind.annotation.*
     }
 
     @GetMapping("{start}/{end}")
-    fun readAll(@PathVariable start:Int,@PathVariable end:Int)
+    fun readFromTo(@PathVariable start:Int,@PathVariable end:Int):Page<Appeal>
     {
-        productService.readAll(start, end)
+         return productService.readAppealFromTo(start, end)
     }
  }

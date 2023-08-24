@@ -5,13 +5,13 @@ import com.example.demo.Repositories.StatusRepository
 import org.springframework.stereotype.Service
 
 @Service
-class StatusService (private val statusProductRepository: StatusRepository)
+class StatusService (private val statusRepository: StatusRepository)
 {
-    fun all():List<Status> =statusProductRepository.findAll()
+    fun all():List<Status> =statusRepository.findAll()
 
     fun get(id:Long):Status
     {
-        val info=statusProductRepository.findById(id)
+        val info=statusRepository.findById(id)
 
         if (info.isPresent)
         {
@@ -19,21 +19,24 @@ class StatusService (private val statusProductRepository: StatusRepository)
         }
         else
         {
-            throw RuntimeException ("Не существует")
+            throw RuntimeException ("Not exists")
         }
     }
 
     fun add(product:Status):Status
     {
-        val new:Status=Status(statusAppeal =product.statusAppeal, appealId = product.appealId, dateCreate =product.dateCreate)
-        return statusProductRepository.save(new)
-    }
+        val new:Status=Status(
+                statusAppeal = product.statusAppeal,
+                appealId = product.appealId,
+                dateCreate =product.dateCreate
+        )
 
-fun edit(id:Long,product: Status):Status=statusProductRepository.save(product.copy(id=id))
+        return statusRepository.save(new)
+    }
 
     fun remove(id:Status)
     {
-        statusProductRepository.delete(id)
+        statusRepository.delete(id)
     }
 }
 

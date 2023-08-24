@@ -9,31 +9,29 @@ import javax.persistence.*
 @Entity
 @Table(name = "Appeal")
 data class Appeal(
+
         @javax.persistence.Id @Id
-@NotNull
-@JsonProperty("id")
-@Column(name = "id")
-@GeneratedValue(strategy = GenerationType.AUTO)
-val id:Long=0L,
+        @NotNull
+        @JsonProperty("id")
+        @Column(name = "id")
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        val id:Long=0L,
 
         @JsonProperty("UserId")
-@OneToOne
-@JoinColumn(name="userId", referencedColumnName = "id")
-val userId:Users,
+        @Column(name="userId")
+        val userId:Long,
 
 
         @JsonProperty("EmployeeId")
-@OneToOne()
-        @JoinColumn(name="employeeId", referencedColumnName = "id", nullable = true)
-        val employeeId:Users,
+        @Column(name="employeeId", nullable = true)
+        val employeeId:Long,
 
         @JsonProperty("StatusId")
-@OneToOne()
-@JoinColumn(name="statusId", referencedColumnName = "id")
-val statusId:Status,
+        @Column(name="statusId")
+        val statusId:Long,
 
         @JsonProperty("DateOfCreate")
-@NotNull
-@Column(name = "dateOfCreate")
-val dateOfCreate:Timestamp
+        @NotNull
+        @Column(name = "dateOfCreate")
+        val dateOfCreate:Timestamp
 )

@@ -6,33 +6,46 @@ import org.springframework.stereotype.Service
 
 @Service
 
-class UsersService (private val usersProductRepository: UsersRepository)
+class UsersService (private val usersRepository: UsersRepository)
 {
-    fun all():List<Users> = usersProductRepository.findAll()
+    fun all():List<Users> = usersRepository.findAll()
 
     fun get(id:Long):Users
     {
-        val info=usersProductRepository.findById(id)
+        val info=usersRepository.findById(id)
 
         if (info.isPresent)
         {
             return info.get()
         }
+        
         else
-            throw RuntimeException("Не сущестувует")
+        {
+            throw RuntimeException("Not exists")
+        } 
     }
 
     fun add(product: Users):Users
     {
-       val new:Users= Users(firstName = product.firstName, lastName = product.firstName, email = product.email, password = product.password, thirdName = product.thirdName, address = product.address, phoneNumber =product.phoneNumber, inn = product.inn, organisationName = product.organisationName, usersRoles = product.usersRoles)
+       val new:Users= Users(
+               firstName = product.firstName,
+               lastName = product.lastName,
+               email = product.email,
+               password = product.password,
+               thirdName = product.thirdName,
+               address = product.address,
+               phoneNumber = product.phoneNumber,
+               inn = product.inn,
+               organisationName = product.organisationName,
+               usersRoles = product.usersRoles
+       )
 
-       return usersProductRepository.save(new)
+       return usersRepository.save(new)
     }
-    fun edit(id: Long,product: Users):Users=usersProductRepository.save(product.copy(id=id))
-
+    
     fun remove(id:Users)
     {
-        usersProductRepository.delete(id)
+        usersRepository.delete(id)
     }
 
 }

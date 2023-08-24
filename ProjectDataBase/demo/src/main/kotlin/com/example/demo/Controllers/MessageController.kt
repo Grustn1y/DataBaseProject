@@ -11,22 +11,24 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("Message")
 class MessageController(private val productService: MessageService)
 {
-    @GetMapping("GetAll")
+    @GetMapping("get_all")
     fun getAll():List<Message>
     {
        return productService.all()
     }
+
     @PostMapping
     fun create(@RequestBody product: Message)
     {
         productService.add(product)
     }
-    @GetMapping("{id}")
-    @ResponseStatus(HttpStatus.FOUND)
 
-    fun  read(@PathVariable id: Long, @RequestBody product: Message)
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+
+    fun  get(@PathVariable id: Long):Message
     {
-        productService.edit(id,product)
+        return productService.get(id)
     }
 
     @DeleteMapping("{id}")

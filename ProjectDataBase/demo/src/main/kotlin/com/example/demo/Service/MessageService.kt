@@ -5,32 +5,39 @@ import com.example.demo.Repositories.MessageRepository
 import org.springframework.stereotype.Service
 
 @Service
- class MessageService(private val messageProductRepository: MessageRepository)
+ class MessageService(private val messageRepository: MessageRepository)
 {
-    fun all():List<Message> = messageProductRepository.findAll()
+    fun all():List<Message> = messageRepository.findAll()
 
     fun get(id:Long): Message
     {
-        val info=messageProductRepository.findById(id)
+        val info=messageRepository.findById(id)
 
         if (info.isPresent)
         {
             return info.get()
         }
         else
-            throw RuntimeException("Не сущестувует")
+        {
+            throw RuntimeException("Not exists")
+        }
     }
 
     fun add(product: Message): Message
     {
-        val new:Message = Message(appealId = product.appealId, ownerId = product.ownerId, header = product.header, content = product.content, dateOfCreate = product.dateOfCreate)
+        val new:Message = Message(
+        appealId = product.appealId,
+        ownerId = product.ownerId,
+        appealHeader=product.appealHeader,
+        content = product.content,
+        dateOfCreate = product.dateOfCreate
+        )
 
-        return messageProductRepository.save(new)
+        return messageRepository.save(new)
     }
-    fun edit(id: Long,product:Message): Message =messageProductRepository.save(product.copy(id=id))
 
     fun remove(id: Message)
     {
-        messageProductRepository.delete(id)
+        messageRepository.delete(id)
     }
  }

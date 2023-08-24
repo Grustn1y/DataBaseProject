@@ -4,6 +4,6 @@ enum class UsersRoles()
 {
     Admin,
     Employee,
-    LegalEnity,
+    LegalEntity,
     Individual
 }

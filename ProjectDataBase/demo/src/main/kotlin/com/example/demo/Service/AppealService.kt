@@ -8,34 +8,45 @@ import org.springframework.stereotype.Service
 
 @Service
 
-class AppealService(private val appealProductRepository:AppealRepository)
+class AppealService(private val appealRepository:AppealRepository)
 {
-    fun all():List<Appeal> = appealProductRepository.findAll()
+    fun all():List<Appeal> = appealRepository.findAll()
 
     fun get(id:Long): Appeal
     {
-        val info=appealProductRepository.findById(id)
+        val info=appealRepository.findById(id)
 
         if (info.isPresent)
         {
             return info.get()
         }
         else
-            throw RuntimeException("Не сущестувует")
+        {
+            throw RuntimeException("Not exists")
+        }
     }
 
     fun add(product:Appeal):Appeal
     {
-        val new: Appeal = Appeal(id = product.id, userId = product.userId, employeeId = product.employeeId, statusId = product.statusId, dateOfCreate = product.dateOfCreate)
+        val new: Appeal = Appeal(
 
-      return appealProductRepository.save(new)
+        id = product.id,
+        userId = product.userId,
+        employeeId = product.employeeId,
+        statusId = product.statusId,
+        dateOfCreate = product.dateOfCreate
+        )
+
+        return appealRepository.save(new)
     }
-    fun edit(id: Long,product: Appeal): Appeal =appealProductRepository.save(product.copy(id=id))
 
     fun remove(id: Appeal)
     {
-        appealProductRepository.delete(id)
+        appealRepository.delete(id)
     }
 
-    fun readAll(start:Int,end:Int):Page<Appeal> = appealProductRepository.findAll(PageRequest.of(start,end))
+    fun readAppealFromTo(start:Int, end:Int):Page<Appeal>
+    {
+       return appealRepository.findAll(PageRequest.of(start,end))
+    }
 }

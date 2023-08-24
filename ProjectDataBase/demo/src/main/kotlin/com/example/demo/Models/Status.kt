@@ -9,26 +9,28 @@ import java.sql.Timestamp
 @Entity
 @Table(name="Status")
 data class Status(
-        @Id
-        @javax.persistence.Id
-     @NotNull
-     @JsonProperty("Id")
-     @Column(name = "id")
-     @GeneratedValue(strategy=GenerationType.AUTO)
-     val id:Long=0L,
 
-        @JsonProperty("StatusAppeal")
-        @Column(name = "statusAppeal")
-        @NotNull
-        val statusAppeal: StatusAppeal,
+    @Id
+    @javax.persistence.Id
+    @NotNull
+    @JsonProperty("Id")
+    @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    val id:Long=0L,
 
-        @JsonProperty("AppealId")
-        @NotNull
-        @Column(name = "appealId")
-        val appealId:Long=0L,
+    @JsonProperty("StatusAppeal")
+    @Column(name = "statusAppeal")
+    @NotNull
+    val statusAppeal: StatusAppeal,
 
-        @JsonProperty("DateOfCreate")
-        @NotNull
-        @Column(name = "dateCreate")
-        val dateCreate:Timestamp,
-        )
+    @JsonProperty("AppealId")
+    @NotNull
+    @Column(name = "appealId")
+    val appealId:Long=0L,
+
+    @JsonProperty("DateOfCreate")
+    @NotNull
+    @Column(name = "dateCreate")
+    val dateCreate:Timestamp,
+
+)
