@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.*
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("Appeal")
- class AppealController(private val productService:AppealService)
+ class AppealController(private val appealService:AppealService)
 {
     @GetMapping("get_all")
     fun all():List<Appeal>
     {
-        return productService.all()
+        return appealService.all()
     }
 
     @PostMapping
     fun create(@RequestBody product: Appeal)
     {
-        productService.add(product)
+        appealService.add(product)
     }
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     fun  get(@PathVariable id: Long):Appeal
     {
-        return productService.get(id)
+        return appealService.get(id)
     }
 
     @DeleteMapping("{id}")
     fun delete(@PathVariable id:Appeal)
     {
-        productService.remove(id)
+        appealService.remove(id)
     }
 
     @GetMapping("{start}/{end}")
     fun readFromTo(@PathVariable start:Int,@PathVariable end:Int):Page<Appeal>
     {
-         return productService.readAppealFromTo(start, end)
+         return appealService.readAppealFromTo(start, end)
     }
  }

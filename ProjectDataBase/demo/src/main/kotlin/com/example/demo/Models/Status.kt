@@ -30,7 +30,7 @@ data class Status(
 
     @JsonProperty("DateOfCreate")
     @NotNull
-    @Column(name = "dateCreate")
-    val dateCreate:Timestamp,
+    @Column(name = "dateOfCreate")
+    val dateOfCreate:Timestamp,
 
 )

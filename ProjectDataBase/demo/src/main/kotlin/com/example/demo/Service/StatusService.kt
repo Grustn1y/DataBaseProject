@@ -28,7 +28,7 @@ class StatusService (private val statusRepository: StatusRepository)
         val new:Status=Status(
                 statusAppeal = product.statusAppeal,
                 appealId = product.appealId,
-                dateCreate =product.dateCreate
+                dateOfCreate =product.dateOfCreate
         )
 
         return statusRepository.save(new)

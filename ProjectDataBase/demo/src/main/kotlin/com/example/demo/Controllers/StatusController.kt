@@ -18,9 +18,9 @@ class StatusController(private val productService: StatusService)
     }
 
     @PostMapping
-    fun create(@RequestBody product: Status)
+    fun add(@RequestBody product: Status)
     {
-        productService.add(product)
+         productService.add(product)
     }
 
   @GetMapping("{id}")
